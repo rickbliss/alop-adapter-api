@@ -29,16 +29,16 @@ class home {
         }));
 
         const w = workoutService.get()
-        .map((data) => {
-            workout: data
-        });
+        .map((data) => ({
+            workout: workoutMapping.transform(data)
+        }));
 
         const a = trackingService.get()
-        .map((data) => {
-            activities: data
-        })
+        .map((data) => ({
+            activities: activityMapping.transform(data)
+        }))
 
-		return Observable.concat(u, Observable.forkJoin(u,u).mergeMap(results=> Observable.from(data)));
+		return Observable.concat(u, Observable.forkJoin(a,w)).flatMap(results=> Observable.from(results));
     }
 }
 module.exports = new home();

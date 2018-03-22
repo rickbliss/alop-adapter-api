@@ -29,14 +29,14 @@ workout.get = function(){
             if (err) {
                 let errorMsg;
                 if (body){
-                	errorMsg = "error processing response for " + JSON.stringify(body);
+                	errorMsg = "error processing response for " + JSON.stringify(body) + " for error " + err;
                 }else{
-                	errorMsg = "error processing response";
+                	errorMsg = "error processing response for error " + err;
                 }
                 observer.error({
-                	response: errorMsg
+                	resp: errorMsg
                 })
-            } else {          
+            } else {
                 observer.next(body);
                 observer.complete();
             }

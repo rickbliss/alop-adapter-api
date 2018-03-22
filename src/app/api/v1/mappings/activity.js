@@ -46,13 +46,14 @@ class mappings {
 class activity {
     transform(data){
         var result = {};
-        result.classes_taken_this_week = mappings.get_classes_taken_this_week(data);
+        var m = new mappings();
+        result.classes_taken_this_week = m.get_classes_taken_this_week(data);
         result.minutes_taken_this_week = "000";
-        result.classes_taken_this_month = mappings.get_classes_taken_this_month(data);
+        result.classes_taken_this_month = m.get_classes_taken_this_month(data);
         result.minutes_taken_this_month = "000";
-        result.classes_taken_this_year = mappings.get_classes_taken_this_year(data);;
+        result.classes_taken_this_year = m.get_classes_taken_this_year(data);;
         result.minutes_taken_this_year = "000";
-        result.recent_classes = mappings.recent_items(4,data);        
+        result.recent_classes = m.recent_items(4,data);        
         return result;
     }
 }

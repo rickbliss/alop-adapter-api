@@ -17,18 +17,22 @@ router.use((req, res, next) => {
     next();
 });
 router.get('/home', (req, res) =>{
+	var account;
     	home.getAccount(req, res)
     	.subscribe(
-    		(data) => {
-    			console.log("dafda");
-    			//res.status(200);
-    			res.json(data)
+    		(value) => {
+    			//console.log("next", value);    			
+    			account = value;    			
     		},
     		(error) => {
-	    		//	res.status(500);
-	    			res.json({ message: 'Error Message: ' + error })
+    			//console.log("error", error);
+    			res.status(500);
+    			res.json({ message: 'Error Message: ' + error })
     		},
-    		() => {}
+    		() => {
+    			res.status(200);
+    			res.json(account)
+    		}
     	);
 });
 

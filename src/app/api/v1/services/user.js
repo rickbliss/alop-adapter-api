@@ -45,7 +45,7 @@ user.get = function(){
                 	errorMsg = "error processing response";
                 }
                 observer.error({
-                	response: errorMsg
+                	resp: errorMsg
                 })
             } else {          
                 observer.next(body);
