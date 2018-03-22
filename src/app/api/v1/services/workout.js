@@ -1,6 +1,6 @@
 /**
  * Business API Service Call
- * Tracking data
+ * Workout data
  *
  *
  */
@@ -9,33 +9,22 @@
 
 var request = require('request');
 var Observable = require('rxjs/Observable').Observable;
-let user = {};
+let workout = {};
 
-// user.parseHeaders = function(h){
-// 	if (h['Authorization'] && !h['Authorization'].includes('Bearer')) {
-// 		h['Authorization'] = 'Bearer ' + h['Authorization'];
-// 	}
-// 	if (h['host']){
-// 		delete h['host'];
-// 	}
-// 	return h;
-// };
-
-user.get = function(){
-
+workout.get = function(){
 	const options = {
-		uri: 'https://www.alotofpilates.com/api/v3/users',	
+		uri: 'https://www.alotofpilates.com/api/v3/workouts/randomList?limit=4&status=active',	
 		headers: {
 			'accept': 'application/json',
 			'content-type': 'application/json',
 			'x-3scale-proxy-secret-token': 'MPP-Allow-API-Call',
 			'Authorization': 'Bearer ddd87fb9a543aa0c4d1dd58d55942606dbd5681bfec5311f4077d4b0610380a9'    
 		},
-		//headers: this.parseHeaders(headers),
 		json: true
 	};
 
-	return Observable.create( observer  => {		
+
+	return Observable.create(observer => {
 		request.get(options, (err, resp, body) => {
             if (err) {
                 let errorMsg;
@@ -55,4 +44,4 @@ user.get = function(){
 	})
 };
 
-module.exports = user;
+module.exports = workout;

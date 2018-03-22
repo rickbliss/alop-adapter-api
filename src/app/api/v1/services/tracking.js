@@ -8,6 +8,7 @@
 'use strict'
 
 var request = require('request');
+var Observable = require('rxjs/Observable').Observable;
 let tracking = {};
 
 tracking.get = function(){
@@ -22,15 +23,24 @@ tracking.get = function(){
 		json: true
 	};
 
-    return new Promise((resolve, reject) => {    
-        request.get(options, (err, resp, body) => {
+	return Observable.create( observer  => {
+		request.get(options, (err, resp, body) => {
             if (err) {
-                reject(err);
-            } else {
-                resolve(body); //JSON.parse(body)
+                let errorMsg;
+                if (body){
+                	errorMsg = "error processing response for " + JSON.stringify(body);
+                }else{
+                	errorMsg = "error processing response";
+                }
+                observer.error({
+                	response: errorMsg
+                })
+            } else {          
+                observer.next(body);
+                observer.complete();
             }
         });
-    });
+	})
 };
 
 module.exports = tracking;
