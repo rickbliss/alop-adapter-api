@@ -26,4 +26,4 @@ $ docker ps
 $ docker logs <container id>
 
 # Run API locally
-$ curl -v -X GET "http://localhost:8081/api/v1/account" -H "Authorization: Bearer .... " -H "Accept: application/json" -H "Content-type: application/json" -H "X-3scale-Proxy-Secret-Token:..."
+$ curl -v -X GET "http://localhost:8081/api/v1/home" -H "Authorization: Bearer 096ae4798c60f74d960f79f5d93d3d06018a19d69b5c0375ebf28318fccd7c1f" -H "Accept: application/json" -H "Content-type: application/json"  

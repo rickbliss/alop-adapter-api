@@ -12,6 +12,7 @@ require('rxjs/add/observable/of');
 require('rxjs/add/operator/map');
 require('rxjs/add/observable/forkJoin');
 require('rxjs/add/operator/mergeMap');
+require('rxjs/add/operator/concatMap');
 require('rxjs/add/observable/from');
 require('rxjs/add/observable/concat');
 require('rxjs/add/operator/catch');
@@ -24,7 +25,7 @@ const activityMapping = require('../mappings/activity');
 
 class home {
     getAccount(req, res){
-    	const u = userService.get()
+    	const u = userService.get(req.headers)
             .map( (data) => ({
                 user: userMapping.transform(data)
             })).catch((error) => {
@@ -33,16 +34,16 @@ class home {
                 })
             });
 
-        const w = workoutService.get()
+        const w = workoutService.get(req.headers)
             .map((data) => ({
-                workout: workoutMapping.transform(data)
+                workouts: workoutMapping.transform(data)
             })).catch((error) => {
                 return Observable.of({
-                    workout: {}
+                    workouts: {}
                 })
             });
 
-        const a = trackingService.get()
+        const a = trackingService.get(req.headers)
             .map((data) => ({
                 activities: activityMapping.transform(data)
             })).catch((error) => {
@@ -51,7 +52,7 @@ class home {
                 })
             });
 
-		return Observable.concat(u, Observable.forkJoin(a,w).mergeMap(results => Observable.from(results)));
+		return Observable.concat(u, Observable.forkJoin(a,w).concatMap(results => Observable.from(results)));
     }
 }
 module.exports = new home();
