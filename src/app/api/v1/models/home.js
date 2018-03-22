@@ -26,7 +26,12 @@ class home {
     	const u = userService.get()
         .map( (data) => ({
             user: userMapping.transform(data)
-        }));
+        }).catch((error) => {
+            return Observable.of({
+                user: {}
+            })
+        }
+        ));
 
         const w = workoutService.get()
         .map((data) => ({
