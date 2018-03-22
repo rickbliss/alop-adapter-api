@@ -30,12 +30,12 @@ class home {
                 user: userMapping.transform(data)
             })).catch((error) => {
                 return Observable.of({
-                    user: {}
+                    user: {'err':'dda'}
                 })
             });
 
         const w = workoutService.get(req.headers)
-            .map((data) => ({
+            .map((data) => ({              
                 workouts: workoutMapping.transform(data)
             })).catch((error) => {
                 return Observable.of({

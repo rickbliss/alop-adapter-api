@@ -13,10 +13,7 @@ var config = require('../../../../../config/config');
 
 class apiCall {
 
-	parseHeaders(h){
-		if (h['Authorization'] && !h['Authorization'].includes('Bearer')) {
-			h['Authorization'] = 'Bearer ' + h['Authorization'];
-		}
+	parseHeaders(h){	
 		if (h['host']){
 			delete h['host'];
 		}
@@ -25,29 +22,19 @@ class apiCall {
 		h['content-type'] = 'application/json';		
 		return h;
 	};
-
-	get(options){
-		console.log(options);
+	get(options){		
 		return Observable.create( observer  => {
+			//console.log(options);
 			request.get(options, (err, resp, body) => {
-	            if (err) {
-	                let errorMsg;
-	                if (body){
-	                	errorMsg = "error processing response for " + JSON.stringify(body);
-	                }else{
-	                	errorMsg = "error processing response";
-	                }
-	                observer.error({
-	                	resp: errorMsg
-	                })
-	            } else {          
-	                observer.next(body);
-	                observer.complete();
-	            }
-	        });
-		})
+				observer.next(body);
+				observer.complete();
+				observer.error((error) => {
+					resp: "error processing response"
+				})
+				
+			})
+		});
 	};
-
 };
 
 
