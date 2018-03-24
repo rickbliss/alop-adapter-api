@@ -9,11 +9,9 @@
 
 
 class workout {
-    transform(data){    	
-		var result = {};
-		result.id = data.id;        
-		result.created_at = data.created_at;
-		return result;
+    transform(data){    	    	    
+    	const mappedObject = data.map((item) => item);
+		return mappedObject;
     }
 }
 

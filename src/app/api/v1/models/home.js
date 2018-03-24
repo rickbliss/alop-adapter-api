@@ -52,7 +52,7 @@ class home {
                 })
             });
 
-		return Observable.concat(u, Observable.forkJoin(a,w).concatMap(results => Observable.from(results)));
+		return Observable.concat(w, Observable.forkJoin(a,u).concatMap(results => Observable.from(results)));
     }
 }
 module.exports = new home();
