@@ -18,6 +18,7 @@ $ curl -v -X GET "http://localhost:8081/api/v1/home" -H "Authorization: Bearer x
 -------------------------
 # Run it locally on docker container ( assumes docker is installed)
 docker build command builds an image from a Dockerfile and a context. 
+
 $ docker build -t alop/alop-adapter-api .
 	# -t flag tags the image so it's easier to find later using the docker images command:
 
@@ -40,7 +41,12 @@ $ docker logs <container id>
 $ curl -v -X GET "http://localhost:3000/api/v1/home" -H "Authorization: Bearer xxx" -H "Accept: application/json" -H "Content-type: application/json" 
 
 ------------------------------
+
+# Run it on the cloud
+This code runs in the following architecture:
+
+ ![alt text](https://www.dropbox.com/s/kx01qoqfjplal5t/AdapterAPIArchitecture.png?dl=0)
  
 # Test the API on AWS ECS ( with Amazon Load Balancing - ELB)
-$ curl -v -X GET "https://alop-adapter-api-load-balancer-490339502.us-east-1.elb.amazonaws.com/api/v1/home" -H "Authorization: Bearer xxx" -H "Accept: application/json" -H "Content-type: application/json" 
+$ curl -v -X GET "https://alop-adapter-api-load-balancer-490339502.us-east-1.elb.amazonaws.com/api/v1/home" -H "Authorization: Bearer ddd87fb9a543aa0c4d1dd58d55942606dbd5681bfec5311f4077d4b0610380a9" -H "Accept: application/json" -H "Content-type: application/json" 
 
