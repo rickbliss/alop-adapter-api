@@ -2,7 +2,7 @@ This is a NodeJS/ExpressJS Adapter REST API. It orchestrates multiple calls to b
 
 The infrastructure architecture was build to run on AWS Elastic Container Service (ECS) as the container orchestrator, Amazon Elastic Container Registry (ECR) as the Docker Container Repository and Amazon Application Load Balancer to manage the various container instances.
 
-The delivery pipepline uses AWS CodePipeline and AWS Code Build.
+The delivery pipepline uses AWS CodePipeline and AWS Code Build. The pipeline is trigger as the developer pushes to the master branch.
 
 
 The application can be run locally with PM2 process manager or locally on Docker container or on the AWS cloud.
@@ -17,7 +17,7 @@ $ curl -v -X GET "http://localhost:8081/api/v1/home" -H "Authorization: Bearer x
 
 -------------------------
 # Run it locally on docker container ( assumes docker is installed)
-# docker build command builds an image from a Dockerfile and a context. 
+docker build command builds an image from a Dockerfile and a context. 
 $ docker build -t alop/alop-adapter-api .
 	# -t flag tags the image so it's easier to find later using the docker images command:
 
@@ -42,5 +42,5 @@ $ curl -v -X GET "http://localhost:3000/api/v1/home" -H "Authorization: Bearer x
 ------------------------------
  
 # Test the API on AWS ECS ( with Amazon Load Balancing - ELB)
-$ curl -v -X GET "https://alop-adapter-api-load-balancer-490339502.us-east-1.elb.amazonaws.com/api/v1/home" -H "Authorization: Bearer ddd87fb9a543aa0c4d1dd58d55942606dbd5681bfec5311f4077d4b0610380a9" -H "Accept: application/json" -H "Content-type: application/json" 
+$ curl -v -X GET "https://alop-adapter-api-load-balancer-490339502.us-east-1.elb.amazonaws.com/api/v1/home" -H "Authorization: Bearer xxx" -H "Accept: application/json" -H "Content-type: application/json" 
 
