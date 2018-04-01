@@ -50,3 +50,19 @@ This code runs in the following architecture:
 # Test the API on AWS ECS ( with Amazon Load Balancing - ELB)
 $ curl -v -X GET "https://alop-adapter-api-load-balancer-490339502.us-east-1.elb.amazonaws.com/api/v1/home" -H "Authorization: Bearer ddd87fb9a543aa0c4d1dd58d55942606dbd5681bfec5311f4077d4b0610380a9" -H "Accept: application/json" -H "Content-type: application/json" 
 
+
+-----
+
+# Push image to Docker Registry
+
+$ export DOCKER_ID_USER="alotofpilates"
+$ docker build -t $DOCKER_ID_USER/alop-adapter-api-image .
+$ docker login
+$ docker tag $DOCKER_ID_USER/alop-adapter-api-image $DOCKER_ID_USER/alop-adapter-api-image
+$ docker push $DOCKER_ID_USER/alop-adapter-api-image
+
+#Test the API on OpenShift
+
+$ curl -v -X GET "http://test-alop-api.193b.starter-ca-central-1.openshiftapps.com/api/v1/home" -H "Authorization: Bearer ddd87fb9a543aa0c4d1dd58d55942606dbd5681bfec5311f4077d4b0610380a9" -H "Accept: application/json" -H "Content-type: application/json" 
+
+

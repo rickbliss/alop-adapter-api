@@ -2,7 +2,7 @@ FROM node:latest
 MAINTAINER Luciana G Bruscino <luciana.bruscino@gmail.com>
 
 # install PM2
-RUN npm install pm2 -g
+#RUN npm install pm2 -g
 
 # create directory to hold the application code inside the image
 RUN mkdir -p /usr/src/alop-adapter-app
