@@ -9,6 +9,7 @@
   "author": "luciana",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "express": "^4.15.3",
     "request": "^2.79.0",
     "request-promise": "^4.1.1",
